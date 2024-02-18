@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1> Products index </h1>
+<!--    {{products}}-->
+   <a href="{{url_for('product.create')}}"
+       class="btn btn-dark"> Create New Product </a>
+<div class="d-flex flex-row gap-2 flex-wrap">
+
+
+    {% for product in products %}
+
+      <div class="card" style="width: 18rem;">
+        <img width="200" height="200"
+                src="{{url_for('static', filename='students/images/'+product.image)}}"
+                class="card-img-top" alt="...">
+
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          {{product.image}}
+          <a href="{{url_for('product.show', id=product.id)}}" class="btn btn-primary">Show </a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+{% endblock %}

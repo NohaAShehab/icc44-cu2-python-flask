@@ -1,0 +1,19 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1> Product Details </h1>
+
+
+      <div class="card" style="width: 18rem;">
+        <img width="200" height="200"
+                src="{{url_for('static', filename='students/images/'+product.image)}}"
+                class="card-img-top" alt="...">
+
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          {{product.image}}
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+
+{% endblock %}

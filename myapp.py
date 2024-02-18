@@ -1,6 +1,11 @@
 """ import flask """
 from flask import Flask
-from flask import request, render_template
+from flask import request, render_template, redirect, url_for
+
+# configure flask _sql alchemy
+
+from flask_sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__)  # initialize the application in the main of the current module
 students = [{"id": 1, "name": "Shrouq", "image":"pic1.png"},
@@ -104,6 +109,79 @@ def show_student(id):
 
     return "Student not found "
 
+#connect flask app to the database (ORM===> object relational mapper )
+"""
+http://127.0.0.1:5001/students/1
+"""
+"sqllite_"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+db= SQLAlchemy(app)  # create instance folder---> contain project.db
+
+# use db object ---> create model ---> used later in create table and crud
+class Product(db.Model):
+    __tablename__ = "products"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    image = db.Column(db.String, nullable=True)
+
+    def __str__(self):
+        return f"{self.name}"
+
+## create model in the db
+# goto shell
+"""
+    flask shell
+    db.create_all() // create table in sql_lite db =
+"""
+
+@app.route("/products", endpoint='products.index')
+def products_index():
+    products = Product.query.all()
+    return  render_template("products/index.html",products=products)
+
+@app.route("/products/<int:id>", endpoint="product.show")
+def products_show(id):
+    # product = Product.query.get(id)
+    product = Product.query.get_or_404(id)
+    return render_template("products/show.html", product=product)
+
+###### delete the object
+"""
+    1- get object 
+    2- db.session.delete(object)
+    3- db.session.commit
+"""
+
+## create form to add object
+""" default while defining route --->supported  methods ===> GET"""
+@app.route("/products/create",methods =['GET', 'POST'], endpoint='product.create')
+def create_product():
+    ## post
+    print(request.form)
+    if request.method == 'POST':
+        product = Product(name=request.form['name'], image=request.form['image'])
+        db.session.add(product)
+        db.session.commit()
+        # return "Saved
+        return redirect(url_for('products.index'))
+
+    ## get
+    return render_template("products/create.html")
+
+
+
+
+
+
+
+
+
+
+
+#### configure not found 404 ==
+@app.errorhandler(404)
+def get_404(error):
+    return render_template("error404.html")
 
 
 if __name__ == '__main__':
