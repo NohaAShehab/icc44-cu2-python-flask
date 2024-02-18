@@ -1,6 +1,6 @@
 """ import flask """
 from flask import Flask
-from flask import request
+from flask import request, render_template
 
 app = Flask(__name__)  # initialize the application in the main of the current module
 students = [{"id": 1, "name": "Shrouq"},
@@ -34,6 +34,7 @@ def get_students():
     return students
 
 
+# get student info based on passed_id in url
 @app.route("/students/<int:id>")
 def student_profile(id):
     # get student based on id ?
@@ -50,7 +51,42 @@ def student_profile(id):
     return "Student not found "
 
 
-# get student info based on passed_id in url
+# register route  ===>
+def customRout():
+    return "===> Welcome to Custom Route ===> "
+
+
+app.add_url_rule("/custom", view_func=customRout)
+
+
+#open shell --->  run command on the project
+# flask shell
+# when open
+# app.url_map
+# pip install flask-shell-ipython
+
+### templates ?
+""" ----> return with template  ===> render template --> templates """
+
+@app.route("/home")
+def homepage():
+    return render_template("index.html")
+
+# send context to the template
+@app.route("/stds/home")
+def students_home():
+    return render_template("/students/home.html",
+                           name="noha", students=students)
+
+
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     # run the  development server

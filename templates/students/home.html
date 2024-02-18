@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>students Home </title>
+</head>
+<body>
+    <h1> Students home </h1>
+    <h1> {{name}}</h1>
+    <h1 style="color: red"> {{students}}</h1>
+    <h1> We are using jinja engine </h1>
+    <table border="2px">
+        <tr> <th> ID</th> <th> Name</th></tr>
+    {% for std in students %}
+        <tr>
+            <td> {{std["id"]}}</td>
+            <td> {{std["name"]}}</td>
+
+        </tr>
+    {% endfor %}
+    </table>
+
+</body>
+</html>
