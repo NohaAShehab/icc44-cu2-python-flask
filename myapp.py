@@ -1,7 +1,12 @@
 """ import flask """
 from flask import Flask
+from flask import request
 
 app = Flask(__name__)  # initialize the application in the main of the current module
+students = [{"id": 1, "name": "Shrouq"},
+            {"id": 2, "name": "Ali"},
+            {"id": 3, "name": "mohamed"}]
+
 
 # define urls/ routes or url on the application
 @app.route("/")
@@ -11,18 +16,45 @@ def hello_ghaza():
     print(name)
     return "<h1 style='color:red'> Hello Ghaza </h1>"
 
+
 @app.route("/iti")
 def hello_iti():
+    """ flask implicitly ---> configure request"""
     return "<h1 style='color:purple;text-align:center'> Hello ITI </h1>"
+
 
 @app.route('/cu')
 def welcome():
     return "Welcome to cu"
 
+
+@app.route("/students")
+def get_students():
+    print(request)
+    return students
+
+
+@app.route("/students/<int:id>")
+def student_profile(id):
+    # get student based on id ?
+    # print(type(id))
+    # for student in students:
+    #     if student["id"] == id:
+    #         return student
+    "use filter"
+    stds = list(filter(lambda student: student['id'] == id, students))
+    print(stds)
+    if stds:
+        return stds[0]
+
+    return "Student not found "
+
+
+# get student info based on passed_id in url
+
 if __name__ == '__main__':
     # run the  development server
     app.run(debug=True, port=5001)
-
 
 """ to run flask app from terminal
 
