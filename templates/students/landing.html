@@ -3,7 +3,7 @@
 {% block content %}
      <table class="table">
         <tr> <th> ID</th> <th> Name</th>
-            <th> Image</th>
+            <th> Image</th> <th> Show </th>
         </tr>
     {% for std in students %}
         <tr>
@@ -12,7 +12,9 @@
 <!--            <td> {{std["image"]}}</td>-->
             <td><img width="300" height="300"
                     src ="{{url_for('static', filename='students/images/'+std['image'])}}"> </td>
-
+            <td><a class="btn btn-info" href="{{url_for('student.show',id=std['id'] )}}">
+                Show
+            </a>  </td>
         </tr>
     {% endfor %}
     </table>

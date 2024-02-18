@@ -35,7 +35,7 @@ def get_students():
 
 
 # get student info based on passed_id in url
-@app.route("/students/<int:id>")
+@app.route("/stds/<int:id>")
 def student_profile(id):
     # get student based on id ?
     # print(type(id))
@@ -81,12 +81,28 @@ def students_home():
 
 
 
-## serving static files ? ===>
+#serving static files ? ===>
 @app.route("/students/land")
 def students_land():
     return  render_template("students/landing.html", students=students)
 
+"""manage urls """
+""" by default each url you created --> end_point default --> function_name """
 
+@app.route("/test", endpoint="test_url")
+def test():
+    return  "Test"
+
+# send parm in url
+
+@app.route("/students/<int:id>", endpoint="student.show")
+def show_student(id):
+    stds = list(filter(lambda student: student['id'] == id, students))
+    print(stds)
+    if stds:
+        return render_template("students/profile.html", student=stds[0])
+
+    return "Student not found "
 
 
 
