@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+     <table class="table">
+        <tr> <th> ID</th> <th> Name</th>
+            <th> Image</th>
+        </tr>
+    {% for std in students %}
+        <tr>
+            <td> {{std["id"]}}</td>
+            <td> {{std["name"]}}</td>
+<!--            <td> {{std["image"]}}</td>-->
+            <td><img width="300" height="300"
+                    src ="{{url_for('static', filename='students/images/'+std['image'])}}"> </td>
+
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}

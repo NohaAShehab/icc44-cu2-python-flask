@@ -3,9 +3,9 @@ from flask import Flask
 from flask import request, render_template
 
 app = Flask(__name__)  # initialize the application in the main of the current module
-students = [{"id": 1, "name": "Shrouq"},
-            {"id": 2, "name": "Ali"},
-            {"id": 3, "name": "mohamed"}]
+students = [{"id": 1, "name": "Shrouq", "image":"pic1.png"},
+            {"id": 2, "name": "Ali",  "image":"pic2.png"},
+            {"id": 3, "name": "mohamed",  "image":"pic3.png"}]
 
 
 # define urls/ routes or url on the application
@@ -81,8 +81,10 @@ def students_home():
 
 
 
-
-
+## serving static files ? ===>
+@app.route("/students/land")
+def students_land():
+    return  render_template("students/landing.html", students=students)
 
 
 
