@@ -31,10 +31,13 @@ def create_app(config_name="prd"):
         # to apply changes to database
         flask db upgrade         
     """
-
+    ## add url
+    # from app.students.views import  get_index
+    # app.add_url_rule("/", view_func=get_index, endpoint="landing")
 
     # create architecture // views , templates
     # introduce  blueprint to the application
-
+    from app.students import student_blueprint
+    app.register_blueprint(student_blueprint)
 
     return app

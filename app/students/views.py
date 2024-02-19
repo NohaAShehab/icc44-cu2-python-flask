@@ -3,6 +3,11 @@ from app.models import  Student
 # you write view functions
 from app.students import student_blueprint
 
+
+def get_index():
+    return "<h1> Index </h1> "
+
+
 @student_blueprint.route('', endpoint='students_index')
 def students_index():
     students = Student.get_all_objects()
