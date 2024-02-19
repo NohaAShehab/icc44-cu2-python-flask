@@ -34,6 +34,7 @@ def create_app(config_name="prd"):
 
 
     # create architecture // views , templates
+    # introduce  blueprint to the application
 
 
     return app
