@@ -33,5 +33,11 @@ class Student(db.Model):
     def get_student_by_id(cls, id):
         return  cls.query.get_or_404(id)
 
+    @classmethod
+    def save_student(cls, request_data):  # immutable dict
+        student = cls(**request_data)
+        db.session.add(student)
+        db.session.commit()
+        return student
 
 

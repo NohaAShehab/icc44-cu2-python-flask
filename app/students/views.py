@@ -26,9 +26,13 @@ def students_show(id):
 def create_student():
     if request.method == 'POST':
         print(f"request received > {request.form}")
-        std = Student(name=request.form['name'], age=request.form['age'],
-                      image=request.form['image'], grade=request.form['grade'])
-        db.session.add(std)
-        db.session.commit()
-        return redirect(url_for('students.index'))
+        # std = Student(name=request.form['name'], age=request.form['age'],
+        #               image=request.form['image'], grade=request.form['grade'])
+        # db.session.add(std)
+        # db.session.commit()
+        # return redirect(url_for('students.index'))
+
+        student = Student.save_student(request.form)
+        return redirect(student.show_url)
+
     return render_template("students/create.html")
