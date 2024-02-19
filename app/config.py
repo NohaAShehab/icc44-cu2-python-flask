@@ -12,10 +12,11 @@ class DevelopmentConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG=False
-    SQLALCHEMY_DATABASE_URI=''
+    """postgresql://username:password@localhost:portnumber/database_name """
+    SQLALCHEMY_DATABASE_URI='postgresql://flask:iti@localhost:5432/flask_cu'
 
 
 config_options = {
     "dev": DevelopmentConfig,
-    "prd": DevelopmentConfig
+    "prd": ProductionConfig
 }

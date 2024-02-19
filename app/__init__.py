@@ -5,7 +5,7 @@ from app.models import  db
 from flask_migrate import Migrate
 
 
-def create_app(config_name='dev'):
+def create_app(config_name="prd"):
     # create app
     app = Flask(__name__)
     # define configuration
@@ -13,7 +13,7 @@ def create_app(config_name='dev'):
     print(current_config)
     ## read database configuration from config class
     app.config['SQLALCHEMY_DATABASE_URI'] = current_config.SQLALCHEMY_DATABASE_URI
-
+    app.config.from_object(current_config)
 
 
     # define db to the app
@@ -33,7 +33,7 @@ def create_app(config_name='dev'):
     """
 
 
-
+    # create architecture // views , templates
 
 
     return app

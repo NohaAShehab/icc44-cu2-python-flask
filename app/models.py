@@ -9,6 +9,7 @@ class Student(db.Model):
     name = db.Column(db.String)
     image = db.Column(db.String, nullable=True)
     grade= db.Column(db.Integer, nullable=True)
+    age = db.Column(db.Integer, nullable=True)
 
 
     def __str__(self):
