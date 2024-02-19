@@ -1,17 +1,11 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-    <h1> Students index </h1>
-<!--{{students}}-->
-   <a href="{{url_for('students.create')}}"
-       class="btn btn-dark"> Create New Student </a>
+    <h1> Students Info </h1>
 <div class="d-flex flex-row gap-2 flex-wrap">
 
 
-    {% for student in students %}
-<!--        {{student.image_url}}-->
       <div class="card" style="width: 18rem;">
-          <!--      src="{{url_for('static', filename='students/images/'+student.image)}}"-->
 
         <img width="200" height="200"
           src = "{{student.image_url}}"
@@ -20,10 +14,10 @@
         <div class="card-body">
           <h5 class="card-title">{{student.name}}</h5>
           {{student.image}}
-          <a href="{{student.show_url}}" class="btn btn-primary">Show </a>
+          <a href="" class="btn btn-primary">Show </a>
         </div>
       </div>
-    {% endfor %}
+
   </div>
 
 {% endblock %}

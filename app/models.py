@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask import url_for
 
 
 db = SQLAlchemy()
@@ -15,6 +16,22 @@ class Student(db.Model):
     def __str__(self):
         return self.name
 
+
+    @property
+    def image_url(self):
+        return url_for('static', filename=f'students/images/{self.image}')
+
+    @property
+    def show_url(self):
+        return url_for("students.show", id = self.id)
+
     @classmethod
     def get_all_objects(cls):
         return cls.query.all()
+
+    @classmethod
+    def get_student_by_id(cls, id):
+        return  cls.query.get_or_404(id)
+
+
+
