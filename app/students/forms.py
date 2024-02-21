@@ -12,4 +12,4 @@ class StudentForm(FlaskForm):
     age = IntegerField("Age", validators=[DataRequired()])
     grade = IntegerField("Grade", validators=[DataRequired()])
     # add track field --> one to many ---> get data from another model
-    track = QuerySelectField("Track", query_factory=lambda:Track.get_all_tracks())
+    track_id = QuerySelectField("Track", query_factory=lambda:Track.get_all_tracks())

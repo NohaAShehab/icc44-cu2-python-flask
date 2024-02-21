@@ -7,3 +7,20 @@
 {% macro sayhello() %}
   <h1 style="color:blue"> Hello from flask </h1>
 {% endmacro %}
+
+
+{% macro render_field(field) %}
+  <dt class="form-label"> {{field.label }}</dt>
+  <dd>
+  {{field}}
+    {% if field.errors %}
+      <ul class="text-danger">
+        {% for error in field.errors %}
+          <li> {{error }}</li>
+        {% endfor %}
+
+      </ul>
+    {% endif %}
+  </dd>
+
+{% endmacro %}

@@ -1,33 +1,43 @@
 {% extends 'layouts/base.html' %}
-
+{% import 'macros_.html' as mymacro %}
 {% block content %}
     <h1> Add Student </h1>
 
 <!--{{form.name}}-->
+<!--<form action="" method="POST">-->
+<!--  {{form.csrf_token }}-->
+<!--  <div class="mb-3">-->
+<!--    {{form.name.label}}-->
+<!--      {{form.name}}-->
+<!--  </div>-->
+<!--    <div class="mb-3">-->
+<!--    {{form.image.label}}-->
+<!--      {{form.image}}-->
+<!--  </div>-->
+<!--     <div class="mb-3">-->
+<!--    {{form.age.label}}-->
+<!--      {{form.age}}-->
+<!--  </div>-->
+<!--     <div class="mb-3">-->
+<!--    {{form.grade.label}}-->
+<!--      {{form.grade}}-->
+<!--  </div>-->
+
+
+<!--  <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--</form>-->
+
+
+
+
 <form action="" method="POST">
-  {{form.csrf_token }}
-  <div class="mb-3">
-    {{form.name.label}}
-      {{form.name}}
-  </div>
-    <div class="mb-3">
-    {{form.image.label}}
-      {{form.image}}
-  </div>
-     <div class="mb-3">
-    {{form.age.label}}
-      {{form.age}}
-  </div>
-     <div class="mb-3">
-    {{form.grade.label}}
-      {{form.grade}}
-  </div>
-  <div class="mb-3">
-    {{form.track.label}}
-      {{form.track}}
-  </div>
+    {{form.csrf_token }}
+    {{mymacro.render_field(form.name)}}
+    {{mymacro.render_field(form.image)}}
+    {{mymacro.render_field(form.age)}}
+    {{mymacro.render_field(form.grade)}}
+    {{mymacro.render_field(form.track_id)}}
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
 {% endblock %}

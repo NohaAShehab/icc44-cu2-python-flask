@@ -36,12 +36,19 @@ def create_student():
 @student_blueprint.route("/createform", methods=['GET', 'POST'],
                          endpoint='createform')
 def create_student_viaform():
+    print(request.form)
     form = StudentForm(request.form)
-    if request.method == 'POST' and form.validate():
-        print(request.form)
-        return "data"
-    elif request.method == 'GET':
+    if request.method == 'POST':
+        if "csrf_token" not in request.form.keys():
+            return "error", 419
+        if form.validate():
+            print(request.form)
+            student_data = dict(request.form)
+            print(student_data)
+            del student_data['csrf_token']
+            student = Student.save_student(student_data)
+            return redirect(student.show_url)
+        # return "data"
+    # elif request.method == 'GET':
 
-        return render_template("students/createform.html", form=form)
-    else:
-        return "Errors"
+    return render_template("students/createform.html", form=form)
