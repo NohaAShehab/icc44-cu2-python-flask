@@ -7,6 +7,8 @@ class Track(db.Model):
     __tablename__ = 'tracks'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True)
+    # db.relationship (modelname )
+    students = db.relationship('Student', backref='tracks', lazy=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -22,6 +24,8 @@ class Student(db.Model):
     image = db.Column(db.String, nullable=True)
     grade= db.Column(db.Integer, nullable=True)
     age = db.Column(db.Integer, nullable=True)
+    # add track to student
+    track_id =db.Column(db.Integer, db.ForeignKey('tracks.id'), nullable=True)
 
 
     def __str__(self):
