@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1> Tracks index </h1>
+<!--{{students}}-->
+   <a href=""
+       class="btn btn-dark"> Create New Track </a>
+<div class="d-flex flex-row gap-2 flex-wrap">
+
+    <table class="table">
+        <tr>
+            <th> ID</th> <th> Name</th>
+        </tr>
+    {% for track in tracks %}
+        <tr>
+            <td> {{track.id }}</td>
+            <td> {{track.name }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+  </div>
+
+{% endblock %}

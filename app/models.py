@@ -1,8 +1,19 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import url_for
 
-
 db = SQLAlchemy()
+
+class Track(db.Model):
+    __tablename__ = 'tracks'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    @classmethod
+    def get_all_tracks(cls):
+        return cls.query.all()
 
 class Student(db.Model):
     __tablename__ = 'students'
