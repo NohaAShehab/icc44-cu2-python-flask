@@ -1,6 +1,12 @@
 {% extends 'layouts/base.html' %}
+{% import 'macros_.html' as mymacro %}
+
+
+
 
 {% block content %}
+{{mymacro.sayhello()}}
+
     <h1> Students index </h1>
 <!--{{students}}-->
    <a href="{{url_for('students.create')}}"

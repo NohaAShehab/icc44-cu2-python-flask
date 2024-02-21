@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% import 'macros_.html' as mymacro %}
 
 {% block content %}
     <h1> Students Info </h1>
@@ -25,5 +26,8 @@
      <h1>   {{std.name}}  </h1>
     {% endfor %}
 
+
+<h1> Use Macros </h1>
+{{mymacro.listobjects(student.track_name.students)}}
 
 {% endblock %}
