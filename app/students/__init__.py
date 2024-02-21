@@ -11,3 +11,4 @@ from flask import Blueprint
 student_blueprint = Blueprint("students",__name__,url_prefix="/students" )
 # then you need to define the views that will use the blueprint
 from app.students import views
+from app.students import api_views
