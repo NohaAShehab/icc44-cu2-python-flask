@@ -35,8 +35,13 @@ def create_student():
 
 @student_blueprint.route("/createform", methods=['GET', 'POST'],
                          endpoint='createform')
-
 def create_student_viaform():
-    form = StudentForm()
+    form = StudentForm(request.form)
+    if request.method == 'POST' and form.validate():
+        print(request.form)
+        return "data"
+    elif request.method == 'GET':
 
-    return render_template("students/createform.html", form=form)
+        return render_template("students/createform.html", form=form)
+    else:
+        return "Errors"
