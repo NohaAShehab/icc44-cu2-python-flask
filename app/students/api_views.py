@@ -1,3 +1,5 @@
+from flask_restful import Resource, fields, marshal_with
+
 from app.models import Student
 from app.students import  student_blueprint
 
@@ -13,3 +15,25 @@ def get_students():
     print(stds)
     # return students  #     Object of type Student is not JSON serializable
     return stds
+
+track_serilizer= {
+    "id": fields.Integer,
+    "name":fields.String
+}
+
+student_serilizer = {
+    "id": fields.Integer,
+    "name": fields.String,
+    "grade": fields.Integer,
+    "age":fields.Integer,
+    "track_id": fields.Integer,
+    "track_name": fields.Nested(track_serilizer)
+}
+
+class StudentList(Resource):
+    @marshal_with(student_serilizer)
+    def get(self):
+        students = Student.query.all()
+        return students , 200
+
+

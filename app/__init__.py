@@ -3,7 +3,7 @@ from flask import  Flask
 from app.config import config_options as AppConfig
 from app.models import  db
 from flask_migrate import Migrate
-
+from flask_restful import  Api
 
 def create_app(config_name="prd"):
     # create app
@@ -41,5 +41,11 @@ def create_app(config_name="prd"):
     app.register_blueprint(student_blueprint)
     from app.tracks import  track_blueprint
     app.register_blueprint(track_blueprint)
+
+    ### we need to add the API urls
+    api = Api(app) # generate apis for this project
+    # add the class student resource to the api
+    from app.students.api_views import  StudentList
+    api.add_resource(StudentList,'/api/students' )
 
     return app
