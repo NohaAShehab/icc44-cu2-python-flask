@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1> Add Student </h1>
+
+<!--{{form.name}}-->
+<form action="" method="POST">
+  <div class="mb-3">
+    {{form.name.label}}
+      {{form.name}}
+  </div>
+    <div class="mb-3">
+    {{form.image.label}}
+      {{form.image}}
+  </div>
+     <div class="mb-3">
+    {{form.age.label}}
+      {{form.age}}
+  </div>
+     <div class="mb-3">
+    {{form.grade.label}}
+      {{form.grade}}
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

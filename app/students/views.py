@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for
 from app.models import  Student, db
 # you write view functions
 from app.students import student_blueprint
+from app.students.forms import  StudentForm
 
 
 def get_index():
@@ -26,13 +27,16 @@ def students_show(id):
 def create_student():
     if request.method == 'POST':
         print(f"request received > {request.form}")
-        # std = Student(name=request.form['name'], age=request.form['age'],
-        #               image=request.form['image'], grade=request.form['grade'])
-        # db.session.add(std)
-        # db.session.commit()
-        # return redirect(url_for('students.index'))
-
         student = Student.save_student(request.form)
         return redirect(student.show_url)
 
     return render_template("students/create.html")
+
+
+@student_blueprint.route("/createform", methods=['GET', 'POST'],
+                         endpoint='createform')
+
+def create_student_viaform():
+    form = StudentForm()
+
+    return render_template("students/createform.html", form=form)
