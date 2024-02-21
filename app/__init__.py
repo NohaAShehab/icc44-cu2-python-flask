@@ -39,5 +39,7 @@ def create_app(config_name="prd"):
     # introduce  blueprint to the application
     from app.students import student_blueprint
     app.register_blueprint(student_blueprint)
+    from app.tracks import  track_blueprint
+    app.register_blueprint(track_blueprint)
 
     return app

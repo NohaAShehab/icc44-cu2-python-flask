@@ -1,0 +1,6 @@
+
+
+1- relationship
+    one to many relationship using orm in flask
+
+   student study in one track (relation)
