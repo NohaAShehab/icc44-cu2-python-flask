@@ -8,7 +8,8 @@ class Track(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True)
     # db.relationship (modelname )
-    students = db.relationship('Student', backref='tracks', lazy=True)
+    students = db.relationship('Student', backref='track_name', lazy=True)
+    # students contains students in this track
 
     def __str__(self):
         return f'{self.name}'

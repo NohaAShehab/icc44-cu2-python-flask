@@ -13,11 +13,17 @@
 
         <div class="card-body">
           <h5 class="card-title">{{student.name}}</h5>
-          {{student.image}}
+          <h5 class="card-title" style="color: red">Track : {{student.track_name}}</h5>
+
           <a href="" class="btn btn-primary">Show </a>
         </div>
       </div>
+    <h1> Students in this track </h1>
 
   </div>
+ {%for std in student.track_name.students %}
+     <h1>   {{std.name}}  </h1>
+    {% endfor %}
+
 
 {% endblock %}
