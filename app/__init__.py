@@ -45,7 +45,9 @@ def create_app(config_name="prd"):
     ### we need to add the API urls
     api = Api(app) # generate apis for this project
     # add the class student resource to the api
-    from app.students.api_views import  StudentList
+    from app.students.api_views import  StudentList, StudentResource
     api.add_resource(StudentList,'/api/students' )
+    api.add_resource(StudentResource, '/api/students/<int:std_id>')
+
 
     return app

@@ -56,4 +56,12 @@ class Student(db.Model):
         db.session.commit()
         return student
 
+    @classmethod
+    def delele_student(cls, id):
+        std = cls.query.get_or_404(id)
+        db.session.delete(std)
+        db.session.commit()
+        return True
+
+
 

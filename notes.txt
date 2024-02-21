@@ -11,4 +11,12 @@
 3- validate forms in flask
 
 
-4- apis ---> create apis in flask 
+4- apis ---> create apis in flask
+
+
+5- lab ::
+1- create category model  :: id ,name , description
+2 - connect model category with book model
+3- create category add form --> using Flast wtf_forms
+4- modify book creation form to use wtf_forms --> to allow choosing category from drop down
+5- create apis for book
